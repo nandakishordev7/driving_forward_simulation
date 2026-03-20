@@ -38,3 +38,5 @@ dist/
 # Coverage reports
 .coverage
 htmlcov/
+
+nu_scenes/
