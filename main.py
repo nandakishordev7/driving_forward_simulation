@@ -41,10 +41,10 @@ def main():
         points = points[::2]
         colors = colors[::10]
 
-        # 🔥 STEP 1: Camera → Ego
+        # STEP 1: Camera → Ego
         points = transform_points(points, calib['rotation'], calib['translation'])
 
-        # 🔥 STEP 2: Ego → Global
+        # STEP 2: Ego → Global
         points = transform_points(points, ego_pose['rotation'], ego_pose['translation'])
 
         all_points.append(points)
