@@ -146,8 +146,17 @@ def visualize_pointcloud(points, colors, save_path="bev_output.png",
     pcd.points = o3d.utility.Vector3dVector(pts)
     pcd.colors = o3d.utility.Vector3dVector(cols[:, ::-1] / 255.0)  # BGR→RGB
 
+<<<<<<< HEAD
     # Light outlier removal
     pcd, _ = pcd.remove_statistical_outlier(nb_neighbors=20, std_ratio=2.0)
+=======
+    pcd.points = o3d.utility.Vector3dVector(points)
+
+    colors = colors / 255.0
+    pcd.colors = o3d.utility.Vector3dVector(colors)
+
+    pcd.estimate_normals()
+>>>>>>> 775816f4aae9684e557fc1a324901b78ec3ffd26
 
     vis = o3d.visualization.Visualizer()
     vis.create_window(
@@ -161,6 +170,7 @@ def visualize_pointcloud(points, colors, save_path="bev_output.png",
     ro.background_color      = np.array([0.05, 0.05, 0.05])
     ro.show_coordinate_frame = True
 
+<<<<<<< HEAD
     # Set camera to top-down BEV orientation
     ctr     = vis.get_view_control()
     pts_np  = np.asarray(pcd.points)
@@ -168,6 +178,9 @@ def visualize_pointcloud(points, colors, save_path="bev_output.png",
     x_span  = pts_np[:, 0].max() - pts_np[:, 0].min()
     y_span  = pts_np[:, 1].max() - pts_np[:, 1].min()
     height  = max(x_span, y_span) * 1.1
+=======
+    render_option.point_size = 7.0
+>>>>>>> 775816f4aae9684e557fc1a324901b78ec3ffd26
 
     cam_params = o3d.camera.PinholeCameraParameters()
     intr       = o3d.camera.PinholeCameraIntrinsic()

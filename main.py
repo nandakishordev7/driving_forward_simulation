@@ -142,6 +142,5 @@ def main():
     print("\n[main] Launching interactive 3D viewer ...")
     launch_viewer(all_g)
 
-
 if __name__ == "__main__":
     main()

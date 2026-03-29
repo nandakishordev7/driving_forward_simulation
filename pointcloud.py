@@ -30,7 +30,11 @@ def depth_to_pointcloud(depth, image, fx=500, fy=500, cx=None, cy=None):
     # Build pixel grid
     ys, xs = np.meshgrid(np.arange(h), np.arange(w), indexing='ij')
 
+<<<<<<< HEAD
     z = depth  # depth is already metric (scaled externally)
+=======
+    z = depth * 0.02  
+>>>>>>> 775816f4aae9684e557fc1a324901b78ec3ffd26
 
     X = (xs - cx) * z / fx
     Y = (ys - cy) * z / fy
@@ -38,9 +42,18 @@ def depth_to_pointcloud(depth, image, fx=500, fy=500, cx=None, cy=None):
     points = np.stack((X, Y, z), axis=-1).reshape(-1, 3)
     colors = image.reshape(-1, 3)
 
+<<<<<<< HEAD
     # Remove invalid (zero depth) points
+=======
+>>>>>>> 775816f4aae9684e557fc1a324901b78ec3ffd26
     mask = z.reshape(-1) > 0
     points = points[mask]
     colors = colors[mask]
 
+<<<<<<< HEAD
     return points, colors
+=======
+    return points, colors
+
+    return np.array(points), np.array(colors)
+>>>>>>> 775816f4aae9684e557fc1a324901b78ec3ffd26
