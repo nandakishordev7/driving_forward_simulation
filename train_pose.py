@@ -11,13 +11,13 @@ from pose_dataset import NuScenesPoseDataset
 
 # ── Config ────────────────────────────────────────────────────────────────────
 DATAROOT   = "C://Projects//driving_forward//nu_scenes"
-VERSION    = "v1.0-mini"          # change to "v1.0-trainval" for full dataset
+VERSION    = "v1.0-mini"          
 SAVE_DIR   = "C://Projects//driving_forward//checkpoints"
-IMG_SIZE   = (192, 640)           # (H, W) — standard monodepth resolution
+IMG_SIZE   = (192, 640)           
 BATCH_SIZE = 8
 NUM_EPOCHS = 30
 LR         = 1e-4
-VAL_SPLIT  = 0.1                  # 10% of pairs used for validation
+VAL_SPLIT  = 0.1                  # 10% of pairs used for validation split
 DEVICE     = "cuda" if torch.cuda.is_available() else "cpu"
 
 # Loss weights — translation and rotation are different units so balance them

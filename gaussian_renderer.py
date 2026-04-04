@@ -14,14 +14,6 @@ except ImportError:
 
 
 def render_bev_numpy(gaussians, bev_range=50.0, bev_size=512):
-    """
-    Improved numpy BEV renderer with:
-      - Confidence-weighted alpha compositing
-      - Image-color from SH coefficients
-      - Spike suppression via radial density filter
-      - Near-ego fill via small radius boost
-    """
-
     xyz      = _to_np(gaussians['xyz'])         # (N, 3)
     opacity  = _to_np(gaussians['opacity'])      # (N, 1) or (N,)
     sh       = _to_np(gaussians['sh_coeffs'])    # (N, C)

@@ -130,7 +130,7 @@ def main():
     all_g = merge_gaussians(gauss_list)
     print(f"\n[main] Total Gaussians: {len(all_g['xyz']):,}")
 
-    # Save BEV PNG
+    # Saveing the BEV image
     gauss_t = {k: torch.from_numpy(v).float().to(DEVICE) for k, v in all_g.items()}
     bev_img = render_bev_gpu(gauss_t, bev_range=BEV_RANGE,
                               bev_size=BEV_SIZE, device=DEVICE) \
@@ -138,7 +138,7 @@ def main():
               render_bev_numpy(all_g, bev_range=BEV_RANGE, bev_size=BEV_SIZE)
     save_bev(bev_img, BEV_OUT)
 
-    # Launch interactive 3D viewer
+    # Launch interactive 3D viewer for better viualization
     print("\n[main] Launching interactive 3D viewer ...")
     launch_viewer(all_g)
 

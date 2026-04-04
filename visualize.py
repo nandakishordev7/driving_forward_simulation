@@ -7,22 +7,10 @@ import os
 
 
 def visualize_pointcloud(points, colors, save_path="bev_output.png",
-                         resolution=0.1, point_size=2,
+                         resolution=0.1, point_size=2.0,
                          z_min=-2.0, z_max=3.0,
                          bev_radius=50.0):
-    """
-    Dual output:
-      1. Saves a clean top-down BEV PNG  (bev_output.png)
-      2. Opens an interactive Open3D window starting in BEV orientation
-
-    Args:
-        points     : (N, 3) ego-centred XYZ  (from pose network pipeline)
-        colors     : (N, 3) BGR uint8
-        save_path  : PNG output path
-        resolution : metres per pixel in the BEV image
-        point_size : dot radius in BEV image (pixels)
-        z_min/max  : clamp points to this Z-height band (removes sky + ground noise)
-        bev_radius : half-width of BEV canvas in metres (square, centred at ego)
+    """Visualize a 360° bird's eye view (BEV) of 3D points with RGB colors.
     """
 
     if len(points) == 0:

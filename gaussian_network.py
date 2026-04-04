@@ -79,7 +79,6 @@ class DepthDecoder(nn.Module):
 class DepthNetwork(nn.Module):
     """
     Self-supervised depth estimation network.
-    Replaces MiDaS in the pipeline — outputs metric-consistent depth.
     """
     def __init__(self):
         super().__init__()
@@ -117,7 +116,6 @@ class GaussianNetwork(nn.Module):
     def __init__(self, sh_degree=0):
         super().__init__()
         self.encoder = DepthEncoder()
-
         # Parameter heads (applied at /8 resolution, then upsampled)
         self.opacity_head  = self._head(256, 1)
         self.scale_head    = self._head(256, 3)
