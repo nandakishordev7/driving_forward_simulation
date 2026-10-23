@@ -43,7 +43,7 @@ def render_from_pose(gaussians, R, t, K, img_h=480, img_w=640,
     rgb = np.clip(0.5 + 0.282 * sh[:, :3], 0, 1)
 
     # ── Transform points: world → camera ──────────────────────────────────────
-    pts_cam = (R @ xyz.T).T + t          # (N, 3)
+    pts_cam = (R @ xyz.T).T + t          # (N, 3) this leads to blind spot in a minor level in the scene.
 
     # Keep only points in front of camera and within range
     depth = pts_cam[:, 2]
@@ -118,7 +118,7 @@ def fly_around(gaussians, output_path="surround_view.mp4",
     cx, cy   = img_w / 2.0, img_h / 2.0
     K = np.array([[fx, 0, cx], [0, fy, cy], [0, 0, 1]], dtype=np.float32)
 
-    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    fourcc = cv2.VideoWriter_fourcc(*'mp4v') #type:ignore
     writer = cv2.VideoWriter(output_path, fourcc, fps, (img_w, img_h))
 
     for i in range(n_frames):
@@ -165,7 +165,7 @@ def fly_around(gaussians, output_path="surround_view.mp4",
 # ── Multi-view snapshot ───────────────────────────────────────────────────────
 
 def render_surround_snapshot(gaussians, output_path="surround_snapshot.png",
-                              img_h=300, img_w=400):
+                              img_h=300, img_w=400): # this function is only for capturing a single scene for understanding does this actually works ? 
     """
     Render 8 views around the scene (N, NE, E, SE, S, SW, W, NW)
     and stitch them into a single 3×3 grid image with BEV in centre.
@@ -244,7 +244,7 @@ def render_surround_snapshot(gaussians, output_path="surround_snapshot.png",
     return grid
 
 
-def _to_np(x):
+def _to_np(x):# using np instead of diff_gaussian_rasterizer. 
     if isinstance(x, torch.Tensor):
         return x.detach().cpu().numpy()
     return np.asarray(x)

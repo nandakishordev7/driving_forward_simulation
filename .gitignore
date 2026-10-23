@@ -1,3 +1,4 @@
+
 # Python cache
 __pycache__/
 *.py[cod]
@@ -39,6 +40,24 @@ dist/
 .coverage
 htmlcov/
 
+# Dataset
 nu_scenes/
 
-output.mp4/
+# Generated output
+output.mp4
+bev_output.png
+real_comparison.png
+
+# Gaussian rasterization dependency
+diff-gaussian-rasterization/
+
+# Project-specific scripts and outputs
+check.py
+checkpoints/gaussian_net_baseline.pth
+checkpoints/gaussian_net_best.pth
+checkpoints/loss_log.json
+checkpoints/loss_log_baseline.json
+loss_log_demo.json
+plot_real_comparison.py
+plot_refinement_comparison.py
+test_gpu.py
